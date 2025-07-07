@@ -24,7 +24,7 @@ if option.startswith("📅"):
 
     try:
      with st.spinner("Fetching appointments..."):
-        response=requests.get("http://127.0.0.1:8000/appointments")
+        response=requests.get("http://tailor-talk-bot-9v6q.onrender.com/appointments")
         data=response.json()
         appointments=data.get("appointments",[])
 
@@ -69,7 +69,7 @@ elif option.startswith("📝"):
 
         try:
           with st.spinner("Booking appointment..."):  
-            response=requests.post("http://127.0.0.1:8000/book",json=payload)
+            response=requests.post("http://tailor-talk-bot-9v6q.onrender.com/book",json=payload)
             data=response.json()
             if "event_link" in data:
                 st.success(f"Appointment booked! [Click to View]({data['event_link']})")
@@ -83,7 +83,7 @@ elif option.startswith("❌"):
 
     try:
       with st.spinner("Loading appointments..."):  
-        response=requests.get("http://127.0.0.1:8000/appointments")
+        response=requests.get("http://tailor-talk-bot-9v6q.onrender.com/appointments")
         data=response.json()
         appointments=data.get("appointments",[])
 
@@ -94,7 +94,7 @@ elif option.startswith("❌"):
 
             if st.button("Cancel Appointment"):
               with st.spinner("Cancelling..."):  
-                cancel_response=requests.delete(f"http://127.0.0.1:8000/cancel/{event_id}")
+                cancel_response=requests.delete(f"http://tailor-talk-bot-9v6q.onrender.com/cancel/{event_id}")
                 result=cancel_response.json()
                 if "message" in result:
                     st.success(result["message"])
@@ -110,7 +110,7 @@ elif option.startswith("🔁"):
 
     try:
       with st.spinner("Fetching appointments..."):  
-        response=requests.get("http://127.0.0.1:8000/appointments")
+        response=requests.get("http://tailor-talk-bot-9v6q.onrender.com/appointments")
         data=response.json()
         appointments=data.get("appointments",[])
 
@@ -128,7 +128,7 @@ elif option.startswith("🔁"):
 
                     try:
                        with st.spinner("Rescheduling..."):  
-                        res=requests.put("http://127.0.0.1:8000/reschedule",json=payload)
+                        res=requests.put("http://tailor-talk-bot-9v6q.onrender.com/reschedule",json=payload)
                         result=res.json()
                         if "event_link" in result:
                             st.success(f"Appointment rescheduled! [Click to View]({result['event_link']})")
@@ -148,7 +148,7 @@ elif option.startswith("⏳"):
     st.subheader("⏳ Check Availability (Next 24 Hours)")
     try:
       with st.spinner("Checking..."):  
-        response=requests.get("http://127.0.0.1:8000/availability")
+        response=requests.get("http://tailor-talk-bot-9v6q.onrender.com/availability")
         data=response.json()
         busy_slots=data.get("busy_slots",[])
 
@@ -166,7 +166,7 @@ elif option.startswith("🟢"):
 
     try:
       with st.spinner("Loading..."):  
-        response=requests.get("http://127.0.0.1:8000/free-slots")
+        response=requests.get("http://tailor-talk-bot-9v6q.onrender.com/free-slots")
         data=response.json()
         slots=data.get("free_slots",[])
 
@@ -190,7 +190,7 @@ elif option.startswith("💬"):
             try:
                 with st.spinner("Sending message..."):
                     payload={"message": user_message}
-                    response=requests.post("http://127.0.0.1:8000/chat", json=payload)
+                    response=requests.post("http://tailor-talk-bot-9v6q.onrender.com/chat", json=payload)
                     data=response.json()
                     bot_reply=data.get("response", "No response from bot.")
 
