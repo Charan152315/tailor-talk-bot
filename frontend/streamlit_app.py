@@ -1,6 +1,9 @@
 import streamlit as st
+import os
 import requests
 from datetime import datetime,timedelta
+
+os.environ["STREAMLIT_SERVER_PORT"] = os.environ.get("PORT", "8501")
 
 st.markdown(
    """
